@@ -1,0 +1,116 @@
+/*A Program that will play a simple light show that utillizes 6 LEDs
+ *The light show is played to Lil Uzi Vert's XO Tour
+ *Simply play the song and, when the beat drops flip the switch to start the light show
+ *This works especisally because the song only switches between three "melodys"
+ *Each one is orgaznized by the functions baseseq1(); and baseseq2(); and baseseq3();
+ *Do enjoy! */
+
+//Declare all of our leds
+int red = 4;
+int green = 5;
+int blue = 6;
+//Declare the Switch
+int switchPin = 2;
+
+
+void setup(){
+/*Declare all of our leds to pins!
+ *Outputs as the board will output information to these leds (power) */
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(blue, OUTPUT);
+//Switch is an input as it must supply the arduino with information
+  pinMode(switchPin, INPUT);
+}
+
+//
+/*The order in which things will happen
+ *First goes the switch (if loop keeps the program from running until the switch is flipped)
+ *Then each sequence will play from, 1 - 3 as the song only follows three distinct melodys
+ *After that it loops back as the song also follows a loop and come back to origianl melody and repeats */
+ 
+void loop(){
+  int switchVal;
+  switchVal = digitalRead(switchPin);
+  if(switchVal == HIGH){
+    baseseq1();
+    baseseq2();
+    baseseq3();
+  }
+  //If the switch is off, all of the lights will be off
+  else{
+    digitalWrite(red, LOW);
+    digitalWrite(blue, LOW);
+    digitalWrite(green, LOW);
+    delay(250);
+  }
+}
+
+//The first melody
+void baseseq1(){
+  digitalWrite(red, HIGH);
+  delay(950);
+  digitalWrite(red, LOW);
+  digitalWrite(blue, HIGH);
+  delay(800);
+  digitalWrite(blue, LOW);
+  digitalWrite(green, HIGH);
+  delay(700);
+  digitalWrite(green, LOW);
+  digitalWrite(red, HIGH);
+  delay(700);
+  digitalWrite(red, LOW);
+  digitalWrite(blue, HIGH);
+  delay(900);
+  digitalWrite(blue, LOW);
+}
+
+//The second melody
+void baseseq2(){
+  digitalWrite(red, HIGH);
+  delay(900);
+  digitalWrite(red, LOW);
+  digitalWrite(blue, HIGH);
+  delay(500);
+  digitalWrite(blue, LOW);
+  digitalWrite(green, HIGH);
+  delay(300);
+  digitalWrite(green, LOW);
+  //QUICK QUICK QUICK!!!
+  digitalWrite(red, HIGH);
+  delay(230);
+  digitalWrite(red, LOW);
+  digitalWrite(blue, HIGH);
+  delay(230);
+  digitalWrite(blue, LOW);
+  delay(900);
+}
+
+//The third and last melody
+void baseseq3(){
+  digitalWrite(green, HIGH);
+  delay(850);
+  digitalWrite(green, LOW);
+  digitalWrite(red, HIGH);
+  delay(500);
+  digitalWrite(red, LOW);
+  digitalWrite(blue, HIGH);
+  delay(500);
+  digitalWrite(blue, LOW);
+  digitalWrite(green, HIGH);
+  delay(100);
+  digitalWrite(green, LOW);
+  digitalWrite(red, HIGH);
+  delay(100);
+  digitalWrite(red, LOW);
+  digitalWrite(blue, HIGH);
+  delay(100);
+  digitalWrite(blue, LOW);
+  digitalWrite(green, HIGH);
+  delay(100);
+  digitalWrite(green, LOW);
+  digitalWrite(red, HIGH);
+  delay(150);
+  digitalWrite(red, LOW);
+  //Temporal END (as the song (and code) will loop)
+}
